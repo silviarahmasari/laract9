@@ -87,7 +87,7 @@ class NewsController extends Controller
      */
     public function update(Request $request)
     {
-        News::where('author', auth()->user()->email)->update([
+        News::where('id', $request->id)->update([
             'title' => $request->title,
             'description' => $request->description,
             'category' => $request->category
@@ -101,8 +101,10 @@ class NewsController extends Controller
      * @param  \App\Models\News  $news
      * @return \Illuminate\Http\Response
      */
-    public function destroy(News $news)
+    public function destroy(Request $request)
     {
-        //
+        $news = News::find($request->id);
+        $news->delete();
+        return redirect()->back()->with('message', 'Berita berhasil dihapus');
     }
 }

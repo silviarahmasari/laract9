@@ -63,10 +63,15 @@ export default function Dashboard(props) {
                                     <div className="card-actions justify-end">
                                         <div className="badge badge-inline">{news.category}</div>
                                         <div className="badge badge-outline">
-                                            <Link href={route('edit.news')} as="button">Edit
+                                            <Link href={route('edit.news')} as="button" method="get" data={{id: news.id}}>
+                                                Edit
                                             </Link>
                                             </div>
-                                        <div className="badge badge-outline">Delete</div>
+                                        <div className="badge badge-outline">
+                                            <Link href={route('delete.news')} as="button" method="post" data={{id: news.id}}>
+                                                Delete
+                                            </Link>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
